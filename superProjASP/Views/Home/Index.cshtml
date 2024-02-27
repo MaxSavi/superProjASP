@@ -1,0 +1,29 @@
+﻿@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+ *@
+
+@model List<superProjASP.Models.BookModel>
+<h1>Поиск книги</h1>
+<form asp-action="Search" asp-controller="Home" method="post">
+    <input type="text" name="searchTerm" />
+    <button type="submit" class="btn btn-primary">Поиск</button>
+</form>
+<hr>
+<h1>Список книг</h1>
+@foreach (var book in Model)
+{
+    <div>
+        <span>@book.Title - @book.Author (@book.YearOfPublication)</span>
+        <form asp-action="Buy" asp-controller="Home">
+            <input type="hidden" name="bookId" value="@book.Id" />
+            <button type="submit" class="btn btn-primary">Купить</button>
+        </form>
+    </div>
+}
+
